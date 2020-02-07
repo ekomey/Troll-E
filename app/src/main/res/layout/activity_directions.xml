@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    tools:context=".Directions"
+    tools:visibility="visible">
+
+    Button buttonshape.xml
+
+    <ImageButton
+        android:id="@+id/imageUp"
+        android:layout_width="112dp"
+        android:layout_height="93dp"
+        android:adjustViewBounds="false"
+        android:background="@android:color/transparent"
+        android:backgroundTint="#FFFFFF"
+        android:cropToPadding="false"
+        android:scrollbarDefaultDelayBeforeFade="400"
+        android:tint="#00FCFAFA"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.429"
+        app:srcCompat="@drawable/ic_up"
+        tools:visibility="visible" />
+
+    <ImageButton
+        android:id="@+id/imageLeft"
+        android:layout_width="91dp"
+        android:layout_height="189dp"
+        android:adjustViewBounds="false"
+        android:background="@android:color/transparent"
+        android:backgroundTint="#FFFFFF"
+        android:cropToPadding="false"
+        android:orientation="horizontal"
+        android:rotation="90"
+        android:scrollbarDefaultDelayBeforeFade="400"
+        android:tint="#00FCFAFA"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.312"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.553"
+        app:srcCompat="@drawable/ic_left"
+        tools:visibility="visible" />
+
+    <ImageButton
+        android:id="@+id/imageDown"
+        android:layout_width="112dp"
+        android:layout_height="93dp"
+        android:adjustViewBounds="false"
+        android:background="@android:color/transparent"
+        android:backgroundTint="#FFFFFF"
+        android:cropToPadding="false"
+        android:scrollbarDefaultDelayBeforeFade="400"
+        android:tint="#00FCFAFA"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.655"
+        app:srcCompat="@drawable/ic_down"
+        tools:visibility="visible" />
+
+    <ImageButton
+        android:id="@+id/imageRight"
+        android:layout_width="163dp"
+        android:layout_height="177dp"
+        android:adjustViewBounds="false"
+        android:background="@android:color/transparent"
+        android:backgroundTint="#FFFFFF"
+        android:cropToPadding="false"
+        android:rotation="270"
+        android:scrollbarDefaultDelayBeforeFade="400"
+        android:tint="#00FCFAFA"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.77"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.541"
+        app:srcCompat="@drawable/ic_right"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="153dp"
+        android:layout_height="19dp"
+        android:text="Trolley is moving..."
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.783" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
