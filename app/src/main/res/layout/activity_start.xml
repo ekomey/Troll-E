@@ -11,15 +11,17 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="291dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="318dp"
         android:background="@drawable/start_background"
         android:shadowColor="#FFFFFF"
         android:shadowDx="0"
         android:shadowDy="0"
         android:shadowRadius="10"
         android:text="Start"
-        android:textColor="#155AC2"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="#EADFCE"
         android:textSize="45sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,5 +30,25 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="80dp"
         tools:layout_editor_absoluteY="315dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="207dp"
+        android:layout_height="84dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="98dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/aldrich"
+        android:lineSpacingExtra="8sp"
+        android:text="Troll-E"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textColor="#000000"
+        android:textSize="50sp"
+        android:typeface="monospace" />
+
 
 </RelativeLayout>
