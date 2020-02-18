@@ -7,7 +7,9 @@
     android:layout_height="match_parent"
     android:visibility="visible"
     tools:context=".Directions"
-    tools:visibility="visible">
+    tools:visibility="visible"
+    android:background="@color/white">
+
 
     Button buttonshape.xml
 

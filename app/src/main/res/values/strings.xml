@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Tracker</string>
+    <color name="white">#EADFCE</color>
+
 </resources>
