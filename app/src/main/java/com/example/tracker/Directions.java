@@ -39,8 +39,8 @@ public class Directions extends AppCompatActivity {
         animation1.setRepeatCount(Animation.INFINITE); // Repeat animation infinitely
         animation1.setRepeatMode(Animation.REVERSE); // Reverse animation at the end so the button will fade back in
         final ImageButton btn1 = (ImageButton) findViewById(R.id.imageDown);
-        btn.startAnimation(animation1);
-        btn.setOnClickListener(new View.OnClickListener() {
+        btn1.startAnimation(animation1);
+        btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
                 view.clearAnimation();
@@ -54,8 +54,8 @@ public class Directions extends AppCompatActivity {
         animation2.setRepeatCount(Animation.INFINITE); // Repeat animation infinitely
         animation2.setRepeatMode(Animation.REVERSE); // Reverse animation at the end so the button will fade back in
         final ImageButton btn2 = (ImageButton) findViewById(R.id.imageRight);
-        btn.startAnimation(animation2);
-        btn.setOnClickListener(new View.OnClickListener() {
+        btn2.startAnimation(animation2);
+        btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
                 view.clearAnimation();
@@ -69,8 +69,8 @@ public class Directions extends AppCompatActivity {
         animation3.setRepeatCount(Animation.INFINITE); // Repeat animation infinitely
         animation3.setRepeatMode(Animation.REVERSE); // Reverse animation at the end so the button will fade back in
         final ImageButton btn3 = (ImageButton) findViewById(R.id.imageLeft);
-        btn.startAnimation(animation3);
-        btn.setOnClickListener(new View.OnClickListener() {
+        btn3.startAnimation(animation3);
+        btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
                 view.clearAnimation();
