@@ -20,7 +20,7 @@ public class Directions extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_directions);
-        
+
         if (xValue = 90) {
             final Animation animation = new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
          animation.setDuration(500); // duration - half a second
