@@ -34,13 +34,14 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="207dp"
-        android:layout_height="84dp"
+        android:layout_width="217dp"
+        android:layout_height="81dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="100dp"
         android:layout_marginTop="94dp"
+        android:layout_marginEnd="94dp"
         android:fontFamily="@font/aldrich"
         android:lineSpacingExtra="8sp"
         android:text="Troll-E"
