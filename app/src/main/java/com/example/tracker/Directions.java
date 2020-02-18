@@ -15,13 +15,13 @@ public class Directions extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        int xValue;
-        xValue = Math.round( (int) (Math.toDegrees(SensorManager.getOrientation(rMat,orientation)[0]) + 360) % 360);
+        //int xValue;
+        //xValue = Math.round( (int) (Math.toDegrees(SensorManager.getOrientation(rMat,orientation)[0]) + 360) % 360);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_directions);
 
-        if (xValue = 90) {
+        //if (xValue = 90) {
             final Animation animation = new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
          animation.setDuration(500); // duration - half a second
             animation.setInterpolator(new LinearInterpolator()); // do not alter animation rate
@@ -35,8 +35,9 @@ public class Directions extends AppCompatActivity {
                 view.clearAnimation();
 
             }
-        });}
-        if (xValue = 90) {
+        });
+            //}
+        //if (xValue = 90) {
             final Animation animation1 = new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
             animation1.setDuration(500); // duration - half a second
             animation1.setInterpolator(new LinearInterpolator()); // do not alter animation rate
@@ -51,9 +52,9 @@ public class Directions extends AppCompatActivity {
 
             }
         });
-        }
+        //}
 
-        if (xValue = 90){
+        //if (xValue = 90){
             final Animation animation2 = new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
             animation2.setDuration(500); // duration - half a second
             animation2.setInterpolator(new LinearInterpolator()); // do not alter animation rate
@@ -68,8 +69,8 @@ public class Directions extends AppCompatActivity {
 
             }
         });
-        }
-        if (xValue = 90){
+        //}
+        //if (xValue = 90){
             final Animation animation3 = new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
             animation3.setDuration(500); // duration - half a second
             animation3.setInterpolator(new LinearInterpolator()); // do not alter animation rate
@@ -84,7 +85,7 @@ public class Directions extends AppCompatActivity {
 
             }
         });
-        }
+        //}
 
     }
     }
