@@ -15,8 +15,8 @@
 
     <ImageButton
         android:id="@+id/imageUp"
-        android:layout_width="112dp"
-        android:layout_height="93dp"
+        android:layout_width="117dp"
+        android:layout_height="103dp"
         android:adjustViewBounds="false"
         android:background="@android:color/transparent"
         android:backgroundTint="#FFFFFF"
@@ -26,10 +26,10 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.429"
+        app:layout_constraintVertical_bias="0.396"
         app:srcCompat="@drawable/ic_up"
         tools:visibility="visible" />
 
@@ -48,7 +48,7 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.256"
+        app:layout_constraintHorizontal_bias="0.196"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.553"
@@ -68,17 +68,17 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintHorizontal_bias="0.531"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.655"
+        app:layout_constraintVertical_bias="0.695"
         app:srcCompat="@drawable/ic_down"
         tools:visibility="visible" />
 
     <ImageButton
         android:id="@+id/imageRight"
-        android:layout_width="163dp"
-        android:layout_height="177dp"
+        android:layout_width="80dp"
+        android:layout_height="164dp"
         android:adjustViewBounds="false"
         android:background="@android:color/transparent"
         android:backgroundTint="#FFFFFF"
@@ -89,10 +89,10 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.834"
+        app:layout_constraintHorizontal_bias="0.818"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.541"
+        app:layout_constraintVertical_bias="0.544"
         app:srcCompat="@drawable/ic_right"
         tools:visibility="visible" />
 
