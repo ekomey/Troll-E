@@ -206,117 +206,98 @@ public class Directions extends AppCompatActivity implements SensorEventListener
     public void onSensorChanged(SensorEvent event) {
         int sensorType = event.sensor.getType();
         switch (sensorType){
-            case Sensor.TYPE_LINEAR_ACCELERATION :
-                double deltaTime;
-
-                xValue = event.values[0];
-                yValue = event.values[1];
-                zValue = event.values[2];
-
-                /*
-                 *  Filter small movements to reduce noise.
-                 *  If accelerometer values ALL read between -0.1 and 0.1,
-                 *  assume the user is simply standing/not moving
-                 *  Value should be adjusted later on after further testing
-                 */
-                if(Math.abs(xValue) <= 0.1 && Math.abs(yValue) <= 0.1 && Math.abs(zValue) <= 0.1)
-                {
-                    // Movements below 0.1 threshold wont be considered
-                    xValue = 0;
-                    yValue = 0;
-                    zValue = 0;
-                }
-
-                // Set the text in the app
-//                mTextSensorAccelerometer.setText(getResources().getString(R.string.label_accelerometer, xValue, yValue, zValue));
-
-//                addEntry(event, charts.mChartAccel);
-
-                // Timestamp returns time in nanoseconds, which should be much more accurate
-                if(timestamp == 0)
-                {
-                    // This is the time passed since the last reading. It needs to be 0 for the very first reading
-                    deltaTime = 0;
-                }
-                else
-                {
-                    deltaTime = (event.timestamp - timestamp) * nanosecond2second;
-                }
-
-                timestamp = event.timestamp;
-
-                /*  V0 = V + AT
-                 *  A = Acceleration, T = Time in seconds
-                 *  T = time since previous reading
-                 *  V0 = Previously calculated Velocity. Assume initial velocity is 0m/s.
-                 */
-
-                velocityX = (velocityX + (xValue*deltaTime));
-                velocityY = (velocityY + (yValue*deltaTime));
-                velocityZ = (velocityZ + (zValue*deltaTime));
-
-                /* Note :
-                 * Consider using GPS data along with accelerometer data (sensor fusion).
-                 * Accelerometer on it's own may not be accurate enough
-                 */
-//                mTextVelocity.setText(getResources().getString(R.string.label_velocity, velocityX, velocityY, velocityZ));
-//                //mTextVelocityGPS.setText(getResources().getString(R.string.label_velocity, velocityX, velocityY, velocityZ));
-//                mTextVelocityKMH.setText(getResources().getString(R.string.label_velocity_KMH, velocityX*3.6, velocityY*3.6, velocityZ*3.6));
-
-                /*
-                 *  BELOW
-                 *  Writing to AccelLog.csv
-                 *  Very rough implementation, can possibly be improved.
-                 * */
-//                if (record == true) {
-//                    mDatabase.child("X").setValue(xValue);
-//                    mDatabase.child("Y").setValue(yValue);
-//                    mDatabase.child("Z").setValue(zValue);
+//            case Sensor.TYPE_LINEAR_ACCELERATION :
+//                double deltaTime;
+//
+//                xValue = event.values[0];
+//                yValue = event.values[1];
+//                zValue = event.values[2];
+//
+//                /*
+//                 *  Filter small movements to reduce noise.
+//                 *  If accelerometer values ALL read between -0.1 and 0.1,
+//                 *  assume the user is simply standing/not moving
+//                 *  Value should be adjusted later on after further testing
+//                 */
+//                if(Math.abs(xValue) <= 0.1 && Math.abs(yValue) <= 0.1 && Math.abs(zValue) <= 0.1)
+//                {
+//                    // Movements below 0.1 threshold wont be considered
+//                    xValue = 0;
+//                    yValue = 0;
+//                    zValue = 0;
 //                }
+//
+//                // Set the text in the app
+////                mTextSensorAccelerometer.setText(getResources().getString(R.string.label_accelerometer, xValue, yValue, zValue));
+//
+////                addEntry(event, charts.mChartAccel);
+//
+//                // Timestamp returns time in nanoseconds, which should be much more accurate
+//                if(timestamp == 0)
+//                {
+//                    // This is the time passed since the last reading. It needs to be 0 for the very first reading
+//                    deltaTime = 0;
+//                }
+//                else
+//                {
+//                    deltaTime = (event.timestamp - timestamp) * nanosecond2second;
+//                }
+//
+//                timestamp = event.timestamp;
+//
+//                /*  V0 = V + AT
+//                 *  A = Acceleration, T = Time in seconds
+//                 *  T = time since previous reading
+//                 *  V0 = Previously calculated Velocity. Assume initial velocity is 0m/s.
+//                 */
+//
+//                velocityX = (velocityX + (xValue*deltaTime));
+//                velocityY = (velocityY + (yValue*deltaTime));
+//                velocityZ = (velocityZ + (zValue*deltaTime));
+//
+//                /* Note :
+//                 * Consider using GPS data along with accelerometer data (sensor fusion).
+//                 * Accelerometer on it's own may not be accurate enough
+//                 */
+////                mTextVelocity.setText(getResources().getString(R.string.label_velocity, velocityX, velocityY, velocityZ));
+////                //mTextVelocityGPS.setText(getResources().getString(R.string.label_velocity, velocityX, velocityY, velocityZ));
+////                mTextVelocityKMH.setText(getResources().getString(R.string.label_velocity_KMH, velocityX*3.6, velocityY*3.6, velocityZ*3.6));
+//
+//                /*
+//                 *  BELOW
+//                 *  Writing to AccelLog.csv
+//                 *  Very rough implementation, can possibly be improved.
+//                 * */
+////                if (record == true) {
+////                    mDatabase.child("X").setValue(xValue);
+////                    mDatabase.child("Y").setValue(yValue);
+////                    mDatabase.child("Z").setValue(zValue);
+////                }
+////                break;
 //                break;
-                break;
-
-            case Sensor.TYPE_GYROSCOPE :
-                setValues(event);
-                //mTextSensorGyroscope.setText(getResources().getString(R.string.label_gyroscope, xValue, yValue, zValue));
-//                addEntry(event, charts.mChartGyro);
-                break;
-
-            case Sensor.TYPE_MAGNETIC_FIELD_UNCALIBRATED:
-                setValues (event);
-//                addEntry(event, charts.mChartMagneto);
-                break;
+//
+//            case Sensor.TYPE_GYROSCOPE :
+//                setValues(event);
+//                //mTextSensorGyroscope.setText(getResources().getString(R.string.label_gyroscope, xValue, yValue, zValue));
+////                addEntry(event, charts.mChartGyro);
+//                break;
+//
+//            case Sensor.TYPE_MAGNETIC_FIELD_UNCALIBRATED:
+//                setValues (event);
+////                addEntry(event, charts.mChartMagneto);
+//                break;
 
             case Sensor.TYPE_ROTATION_VECTOR:
                 SensorManager.getRotationMatrixFromVector(rMat,event.values);
                 compass = Math.round( (int) (Math.toDegrees(SensorManager.getOrientation(rMat,orientation)[0]) + 360) % 360);
-                //mTextSensorOrientation.setText("Compass : " + Float.toString(compass) + (char) 0x00B0);
-
-//                compass = Math.round(event.values[0]);
 //                mTextSensorOrientation.setText("Compass : " + Float.toString(compass) + (char) 0x00B0);
 
-//                if (initialCompass < 0){
-//                    initialCompass = compass;
-//                }
-//                compassDiff = compass - initialCompass;
-//                compassDiff = Math.abs(compassDiff);
+                if (initialCompass < 0){
+                    initialCompass = compass;
+                }
+                compassDiff = compass - initialCompass;
 
-                if (compass>=310 || compass<=50) {
-                    final Animation animation = new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
-                    animation.setDuration(500); // duration - half a second
-                    animation.setInterpolator(new LinearInterpolator()); // do not alter animation rate
-                    animation.setRepeatCount(4); // Repeat animation infinitely
-                    animation.setRepeatMode(Animation.REVERSE); // Reverse animation at the end so the button will fade back in
-                    final ImageButton btn = (ImageButton) findViewById(R.id.imageUp);
-                    btn.startAnimation(animation);
-                    btn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(final View view) {
-                            view.clearAnimation();
-
-                        }
-                    });}
-                else if (compass>=130 && compass<=220) {
+                if ((compassDiff>=135 && compassDiff<=225) || (compassDiff<=-135 && compassDiff>=-225)){
                     final Animation animation1 = new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
                     animation1.setDuration(500); // duration - half a second
                     animation1.setInterpolator(new LinearInterpolator()); // do not alter animation rate
@@ -331,9 +312,15 @@ public class Directions extends AppCompatActivity implements SensorEventListener
 
                         }
                     });
+
+                    initialCompass += 180;
+                    if (initialCompass>=360){
+                        initialCompass -= 360;
+                    }
+
                 }
 
-                else if (compass>=50 && compass<=130){
+                else if ((compassDiff>=45 && compassDiff<=135) || (compassDiff<=-225 && compassDiff>=-315)){
                     final Animation animation2 = new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
                     animation2.setDuration(500); // duration - half a second
                     animation2.setInterpolator(new LinearInterpolator()); // do not alter animation rate
@@ -348,8 +335,13 @@ public class Directions extends AppCompatActivity implements SensorEventListener
 
                         }
                     });
+
+                    initialCompass += 90;
+                    if (initialCompass>=360){
+                        initialCompass -= 360;
+                    }
                 }
-                else if (compass>=220 && compass<=310){
+                else if ((compassDiff>=-135 && compassDiff<=-45) || (compassDiff<=315 && compassDiff>=225)){
                     final Animation animation3 = new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
                     animation3.setDuration(500); // duration - half a second
                     animation3.setInterpolator(new LinearInterpolator()); // do not alter animation rate
@@ -358,6 +350,28 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                     final ImageButton btn3 = (ImageButton) findViewById(R.id.imageLeft);
                     btn3.startAnimation(animation3);
                     btn3.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(final View view) {
+                            view.clearAnimation();
+
+                        }
+                    });
+
+                    initialCompass -= 90;
+                    if (initialCompass>=360){
+                        initialCompass += 360;
+                    }
+                }
+
+                else{
+                    final Animation animation = new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
+                    animation.setDuration(500); // duration - half a second
+                    animation.setInterpolator(new LinearInterpolator()); // do not alter animation rate
+                    animation.setRepeatCount(4); // Repeat animation infinitely
+                    animation.setRepeatMode(Animation.REVERSE); // Reverse animation at the end so the button will fade back in
+                    final ImageButton btn = (ImageButton) findViewById(R.id.imageUp);
+                    btn.startAnimation(animation);
+                    btn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(final View view) {
                             view.clearAnimation();
