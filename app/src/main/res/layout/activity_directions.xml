@@ -8,7 +8,7 @@
     android:visibility="visible"
     tools:context=".Directions"
     tools:visibility="visible"
-    android:background="@color/white">
+    android:background="@drawable/back">
 
 
     Button buttonshape.xml

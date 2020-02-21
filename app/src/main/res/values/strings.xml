@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Tracker</string>
     <color name="white">#EADFCE</color>
+    <color name="colorBackground">#1D3C26</color>
+
 
 </resources>
