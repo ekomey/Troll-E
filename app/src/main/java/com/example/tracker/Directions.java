@@ -108,8 +108,12 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                 }
                 compassDiff = compass - initialCompass;
 
+                Log.d(TAG, "Compassdiff: "+ compassDiff);
+                Log.d(TAG, "InitialCompass: "+ initialCompass);
+                Log.d(TAG, "Compass: "+ compass);
+
                 //down
-                if ((compassDiff>=135 && compassDiff<=225) || (compassDiff<=-135 && compassDiff>=-225)){
+                if ((compassDiff>=137 && compassDiff<=223) || (compassDiff<=-137 && compassDiff>=-223)){
                     final Animation animation1 = new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
                     animation1.setDuration(500); // duration - half a second
                     animation1.setInterpolator(new LinearInterpolator()); // do not alter animation rate
@@ -129,11 +133,10 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                     if (initialCompass>=360){
                         initialCompass -= 360;
                     }
-
                 }
 
                 //right
-                else if ((compassDiff>=45 && compassDiff<=135) || (compassDiff<=-225 && compassDiff>=-315)){
+                else if ((compassDiff>=47 && compassDiff<=133) || (compassDiff<=-227 && compassDiff>=-313)){
                     final Animation animation2 = new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
                     animation2.setDuration(500); // duration - half a second
                     animation2.setInterpolator(new LinearInterpolator()); // do not alter animation rate
@@ -145,7 +148,6 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                         @Override
                         public void onClick(final View view) {
                             view.clearAnimation();
-
                         }
                     });
 
@@ -156,7 +158,7 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                 }
 
                 //left
-                else if ((compassDiff>=-135 && compassDiff<=-45) || (compassDiff<=315 && compassDiff>=225)){
+                else if ((compassDiff>=-137 && compassDiff<=-43) || (compassDiff<=313 && compassDiff>=227)){
                     final Animation animation3 = new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
                     animation3.setDuration(500); // duration - half a second
                     animation3.setInterpolator(new LinearInterpolator()); // do not alter animation rate
@@ -168,7 +170,6 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                         @Override
                         public void onClick(final View view) {
                             view.clearAnimation();
-
                         }
                     });
 
@@ -179,11 +180,11 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                 }
 
                 //up
-                else{
+                else if ((compassDiff>=-43) || (compassDiff<=43)){
                     final Animation animation = new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
                     animation.setDuration(500); // duration - half a second
                     animation.setInterpolator(new LinearInterpolator()); // do not alter animation rate
-                    animation.setRepeatCount(4); // Repeat animation infinitely
+                    animation.setRepeatCount(3); // Repeat animation infinitely
                     animation.setRepeatMode(Animation.REVERSE); // Reverse animation at the end so the button will fade back in
                     final ImageButton btn = findViewById(R.id.imageUp);
                     btn.startAnimation(animation);
@@ -191,7 +192,6 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                         @Override
                         public void onClick(final View view) {
                             view.clearAnimation();
-
                         }
                     });
                 }
