@@ -137,6 +137,7 @@ public class Directions extends AppCompatActivity implements SensorEventListener
 
                 //right
                 else if ((compassDiff>=47 && compassDiff<=133) || (compassDiff<=-227 && compassDiff>=-313)){
+                    Log.d(TAG, "right entered");
                     final Animation animation2 = new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
                     animation2.setDuration(500); // duration - half a second
                     animation2.setInterpolator(new LinearInterpolator()); // do not alter animation rate
@@ -158,7 +159,8 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                 }
 
                 //left
-                else if ((compassDiff>=-137 && compassDiff<=-43) || (compassDiff<=313 && compassDiff>=227)){
+                else if ((compassDiff>=-133 && compassDiff<=-47) || (compassDiff<=313 && compassDiff>=227)){
+                    Log.d(TAG, "left entered");
                     final Animation animation3 = new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
                     animation3.setDuration(500); // duration - half a second
                     animation3.setInterpolator(new LinearInterpolator()); // do not alter animation rate
@@ -181,6 +183,7 @@ public class Directions extends AppCompatActivity implements SensorEventListener
 
                 //up
                 else if ((compassDiff>=-43) || (compassDiff<=43)){
+                    Log.d(TAG, "up entered");
                     final Animation animation = new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
                     animation.setDuration(500); // duration - half a second
                     animation.setInterpolator(new LinearInterpolator()); // do not alter animation rate
