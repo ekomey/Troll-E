@@ -68,7 +68,7 @@ public class Directions extends AppCompatActivity implements SensorEventListener
 
     private Thread thread;
     private boolean plotData = true;
-
+    
     private static final String TAG = Directions.class.getSimpleName();
     private float compass;
     private float initialCompass = -1;
@@ -100,51 +100,45 @@ public class Directions extends AppCompatActivity implements SensorEventListener
         int sensorType = event.sensor.getType();
         switch (sensorType){
             case Sensor.TYPE_ROTATION_VECTOR:
+
                 SensorManager.getRotationMatrixFromVector(rMat,event.values);
                 compass = Math.round( (int) (Math.toDegrees(SensorManager.getOrientation(rMat,orientation)[0]) + 360) % 360);
 
                 if (initialCompass < 0){
                     initialCompass = compass;
                 }
+
                 compassDiff = compass - initialCompass;
+                System.out.println(compassDiff);
 
                 Log.d(TAG, "Compassdiff: "+ compassDiff);
                 Log.d(TAG, "InitialCompass: "+ initialCompass);
                 Log.d(TAG, "Compass: "+ compass);
 
-                //down
-                if ((compassDiff>=137 && compassDiff<=223) || (compassDiff<=-137 && compassDiff>=-223)){
-                    final Animation animation1 = new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
-                    animation1.setDuration(500); // duration - half a second
-                    animation1.setInterpolator(new LinearInterpolator()); // do not alter animation rate
-                    animation1.setRepeatCount(4); // Repeat animation infinitely
-                    animation1.setRepeatMode(Animation.REVERSE); // Reverse animation at the end so the button will fade back in
-                    final ImageButton btn1 = findViewById(R.id.imageDown);
-                    btn1.startAnimation(animation1);
-                    btn1.setOnClickListener(new View.OnClickListener() {
+                // Down 137 223
+                if (inRange(compassDiff, 137, 223) || inRange(compassDiff, -223, -137)){
+                    final Animation animation = createAnimation();
+                    final ImageButton btnDown = findViewById(R.id.imageDown);
+                    btnDown.startAnimation(animation);
+                    btnDown.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(final View view) {
                             view.clearAnimation();
-
                         }
                     });
 
                     initialCompass += 180;
-                    if (initialCompass>=360){
+                    if (initialCompass >= 360){
                         initialCompass -= 360;
                     }
                 }
 
-                //right
-                else if ((compassDiff>=47 && compassDiff<=133) || (compassDiff<=-227 && compassDiff>=-313)){
-                    final Animation animation2 = new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
-                    animation2.setDuration(500); // duration - half a second
-                    animation2.setInterpolator(new LinearInterpolator()); // do not alter animation rate
-                    animation2.setRepeatCount(3); // Repeat animation infinitely
-                    animation2.setRepeatMode(Animation.REVERSE); // Reverse animation at the end so the button will fade back in
-                    final ImageButton btn2 = findViewById(R.id.imageRight);
-                    btn2.startAnimation(animation2);
-                    btn2.setOnClickListener(new View.OnClickListener() {
+                // Right
+                else if (inRange(compassDiff, 47, 133) || inRange(compassDiff, -47, -133)){
+                    final Animation animation = createAnimation();
+                    final ImageButton btnRight = findViewById(R.id.imageRight);
+                    btnRight.startAnimation(animation);
+                    btnRight.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(final View view) {
                             view.clearAnimation();
@@ -157,16 +151,12 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                     }
                 }
 
-                //left
-                else if ((compassDiff>=-137 && compassDiff<=-43) || (compassDiff<=313 && compassDiff>=227)){
-                    final Animation animation3 = new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
-                    animation3.setDuration(500); // duration - half a second
-                    animation3.setInterpolator(new LinearInterpolator()); // do not alter animation rate
-                    animation3.setRepeatCount(3); // Repeat animation infinitely
-                    animation3.setRepeatMode(Animation.REVERSE); // Reverse animation at the end so the button will fade back in
-                    final ImageButton btn3 = findViewById(R.id.imageLeft);
-                    btn3.startAnimation(animation3);
-                    btn3.setOnClickListener(new View.OnClickListener() {
+                // Left
+                else if (inRange(compassDiff, -137, -43) || inRange(compassDiff, 227, 313)){
+                    final Animation animation = createAnimation();
+                    final ImageButton btnLeft = findViewById(R.id.imageLeft);
+                    btnLeft.startAnimation(animation);
+                    btnLeft.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(final View view) {
                             view.clearAnimation();
@@ -179,16 +169,12 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                     }
                 }
 
-                //up
-                else if ((compassDiff>=-43) || (compassDiff<=43)){
-                    final Animation animation = new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
-                    animation.setDuration(500); // duration - half a second
-                    animation.setInterpolator(new LinearInterpolator()); // do not alter animation rate
-                    animation.setRepeatCount(3); // Repeat animation infinitely
-                    animation.setRepeatMode(Animation.REVERSE); // Reverse animation at the end so the button will fade back in
-                    final ImageButton btn = findViewById(R.id.imageUp);
-                    btn.startAnimation(animation);
-                    btn.setOnClickListener(new View.OnClickListener() {
+                // Up
+                else if ((compassDiff >= -43) || (compassDiff <= 43)){
+                    final Animation animation = createAnimation();
+                    final ImageButton btnUp = findViewById(R.id.imageUp);
+                    btnUp.startAnimation(animation);
+                    btnUp.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(final View view) {
                             view.clearAnimation();
@@ -201,6 +187,25 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                 default :
                     break;
         }
+    }
+
+    private Animation createAnimation() {
+        // Change alpha from fully visible to invisible
+        final Animation animation = new AlphaAnimation(1, 0);
+        // duration is set to half a second
+        animation.setDuration(500);
+        // Do not alter animation rate
+        animation.setInterpolator(new LinearInterpolator());
+        // Repeat animation infinitely
+        animation.setRepeatCount(3);
+        // Reverse animation at the end so the button will fade back in
+        animation.setRepeatMode(Animation.REVERSE);
+        return animation;
+    }
+
+    // checks if compass difference is in range of const1 and const2
+    private Boolean inRange(float x, float const1, float const2) {
+        return x >= const1 && x <= const2;
     }
 
     private void feedMultiple() {
@@ -256,4 +261,6 @@ public class Directions extends AppCompatActivity implements SensorEventListener
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
     }
+
+
 }
