@@ -76,7 +76,6 @@ public class Directions extends AppCompatActivity implements SensorEventListener
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         this.sensors = new Sensors(this);
 
         feedMultiple();
