@@ -115,7 +115,7 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                 Log.d(TAG, "InitialCompass: "+ initialCompass);
                 Log.d(TAG, "Compass: "+ compass);
 
-                // Down 137 223
+                // Down
                 if (inRange(compassDiff, 137, 223) || inRange(compassDiff, -223, -137)){
                     final Animation animation = createAnimation();
                     final ImageButton btnDown = findViewById(R.id.imageDown);
@@ -134,7 +134,8 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                 }
 
                 // Right
-                else if (inRange(compassDiff, 47, 133) || inRange(compassDiff, -47, -133)){
+                else if (inRange(compassDiff, 47, 133) || inRange(compassDiff, -313, -227)){
+                    Log.d(TAG, "right entered");
                     final Animation animation = createAnimation();
                     final ImageButton btnRight = findViewById(R.id.imageRight);
                     btnRight.startAnimation(animation);
@@ -152,7 +153,8 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                 }
 
                 // Left
-                else if (inRange(compassDiff, -137, -43) || inRange(compassDiff, 227, 313)){
+                else if (inRange(compassDiff, -133, -47) || inRange(compassDiff, 227, 313)){
+                    Log.d(TAG, "left entered");
                     final Animation animation = createAnimation();
                     final ImageButton btnLeft = findViewById(R.id.imageLeft);
                     btnLeft.startAnimation(animation);
@@ -171,6 +173,7 @@ public class Directions extends AppCompatActivity implements SensorEventListener
 
                 // Up
                 else if ((compassDiff >= -43) || (compassDiff <= 43)){
+                    Log.d(TAG, "up entered");
                     final Animation animation = createAnimation();
                     final ImageButton btnUp = findViewById(R.id.imageUp);
                     btnUp.startAnimation(animation);
