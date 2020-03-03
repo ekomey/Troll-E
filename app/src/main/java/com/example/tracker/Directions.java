@@ -1,6 +1,9 @@
 package com.example.tracker;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.DialogInterface;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
@@ -8,8 +11,11 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class Directions extends AppCompatActivity {
+    private ImageButton helpButton;
+    private TextView HelpAlert;
 
 
 
@@ -20,6 +26,33 @@ public class Directions extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_directions);
+        helpButton = (ImageButton) findViewById(R.id.helpButton);
+        HelpAlert = (TextView) findViewById(R.id.HelpAlert);
+        helpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(Directions.this);
+
+                builder.setCancelable(true);
+                builder.setTitle("How To Use");
+                builder.setMessage("Please make the phone straight");
+
+
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        HelpAlert.setVisibility(View.VISIBLE);
+                    }
+                });
+                builder.show();
+            }
+        });
 
         //if (xValue = 90) {
             final Animation animation = new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
