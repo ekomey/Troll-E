@@ -61,13 +61,13 @@ import java.util.Date;
 
 
 
-//import com.google.firebase.database.DatabaseReference;
-//import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 
 @SuppressLint("NewApi")
-public class Directions<DatabaseReference, FirebaseDatabase> extends AppCompatActivity implements SensorEventListener {
+public class Directions extends AppCompatActivity implements SensorEventListener {
     private ImageButton helpButton;
     private TextView HelpAlert;
 
@@ -97,7 +97,6 @@ public class Directions<DatabaseReference, FirebaseDatabase> extends AppCompatAc
     private int numDeceleration = 0;
 
     private TextView movementIndicator;
-    private Collator FirebaseDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,7 +134,7 @@ public class Directions<DatabaseReference, FirebaseDatabase> extends AppCompatAc
             }
         });
 
-        mFirebaseDatabase = (FirebaseDatabase) FirebaseDatabase.getInstance();
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
         mDatabase = mFirebaseDatabase.getReference("data");
 
         movementIndicator = (TextView) findViewById(R.id.movementIndicator);
