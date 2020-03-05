@@ -19,6 +19,7 @@ public class Start extends AppCompatActivity {
     private ImageButton helpButton;
     private TextView HelpAlert;
     private Button BtnMove;
+    private Button btnMove;
     Button flash;
 
     @Override
@@ -65,10 +66,17 @@ public class Start extends AppCompatActivity {
 
 
 
+//        Handler h = new Handler();
+//        h.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                startFlash();
+//            }
+//        },3000);
 
-        BtnMove = findViewById(R.id.angry_btn);
+        btnMove = findViewById(R.id.start_btn);
 
-        BtnMove.setOnClickListener(new View.OnClickListener() {
+        btnMove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 moveToDirections();
@@ -78,7 +86,7 @@ public class Start extends AppCompatActivity {
 
     public void startFlash()
     {
-        flash=(Button)findViewById(R.id.angry_btn);
+        flash=(Button)findViewById(R.id.start_btn);
 
         Animation mAnimation = new AlphaAnimation(1,0);
 
