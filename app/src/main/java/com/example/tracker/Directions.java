@@ -41,8 +41,8 @@ import android.widget.TextView;
 import android.widget.Button;
 
 
-//import com.google.firebase.database.DatabaseReference;
-//import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -74,6 +74,10 @@ public class Directions extends AppCompatActivity implements SensorEventListener
     private float initialCompass = -1;
     private float compassDiff;
 
+    // Server related
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference mDatabase;
+
     //Movement detection variable
     private float xValue = 0, yValue = 0;
     private boolean walking = false;
@@ -89,6 +93,9 @@ public class Directions extends AppCompatActivity implements SensorEventListener
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_directions);
+
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        mDatabase = mFirebaseDatabase.getReference("data");
 
         movementIndicator = (TextView) findViewById(R.id.movementIndicator);
     }
@@ -113,6 +120,8 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                 SensorManager.getRotationMatrixFromVector(rMat,event.values);
                 compass = Math.round( (int) (Math.toDegrees(SensorManager.getOrientation(rMat,orientation)[0]) + 360) % 360);
 
+                mDatabase.child("Compass").setValue(compass);
+
                 if (initialCompass < 0){
                     initialCompass = compass;
                 }
@@ -127,6 +136,7 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                 // Down
                 if (walking == true) {
                     movementIndicator.setText("Trolley is moving");
+                    mDatabase.child("Walking").setValue(1);
                     if (inRange(compassDiff, 137, 223) || inRange(compassDiff, -223, -137)) {
                         final Animation animation = createAnimation();
                         final ImageButton btnDown = findViewById(R.id.imageDown);
@@ -196,8 +206,12 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                         });
                     }
                 }
-                else
+
+                else {
                     movementIndicator.setText("Trolley is stationary");
+                    mDatabase.child("Walking").setValue(0);
+                }
+
 
                 break;
 
