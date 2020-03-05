@@ -74,6 +74,13 @@ public class Directions extends AppCompatActivity implements SensorEventListener
     private float initialCompass = -1;
     private float compassDiff;
 
+    //Movement detection variable
+    private float xValue = 0, yValue = 0;
+    private boolean walking = false;
+    private int numDeceleration = 0;
+
+    private TextView movementIndicator;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.sensors = new Sensors(this);
@@ -82,6 +89,8 @@ public class Directions extends AppCompatActivity implements SensorEventListener
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_directions);
+
+        movementIndicator = (TextView) findViewById(R.id.movementIndicator);
     }
 
     @Override
@@ -116,74 +125,124 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                 Log.d(TAG, "Compass: "+ compass);
 
                 // Down
-                if (inRange(compassDiff, 137, 223) || inRange(compassDiff, -223, -137)){
-                    final Animation animation = createAnimation();
-                    final ImageButton btnDown = findViewById(R.id.imageDown);
-                    btnDown.startAnimation(animation);
-                    btnDown.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(final View view) {
-                            view.clearAnimation();
-                        }
-                    });
+                if (walking == true) {
+                    movementIndicator.setText("Trolley is moving");
+                    if (inRange(compassDiff, 137, 223) || inRange(compassDiff, -223, -137)) {
+                        final Animation animation = createAnimation();
+                        final ImageButton btnDown = findViewById(R.id.imageDown);
+                        btnDown.startAnimation(animation);
+                        btnDown.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(final View view) {
+                                view.clearAnimation();
+                            }
+                        });
 
-                    initialCompass += 180;
-                    if (initialCompass >= 360){
-                        initialCompass -= 360;
+                        initialCompass += 180;
+                        if (initialCompass >= 360) {
+                            initialCompass -= 360;
+                        }
+                    }
+
+                    // Right
+                    else if (inRange(compassDiff, 47, 133) || inRange(compassDiff, -313, -227)) {
+                        Log.d(TAG, "right entered");
+                        final Animation animation = createAnimation();
+                        final ImageButton btnRight = findViewById(R.id.imageRight);
+                        btnRight.startAnimation(animation);
+                        btnRight.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(final View view) {
+                                view.clearAnimation();
+                            }
+                        });
+
+                        initialCompass += 90;
+                        if (initialCompass >= 360) {
+                            initialCompass -= 360;
+                        }
+                    }
+
+                    // Left
+                    else if (inRange(compassDiff, -133, -47) || inRange(compassDiff, 227, 313)) {
+                        Log.d(TAG, "left entered");
+                        final Animation animation = createAnimation();
+                        final ImageButton btnLeft = findViewById(R.id.imageLeft);
+                        btnLeft.startAnimation(animation);
+                        btnLeft.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(final View view) {
+                                view.clearAnimation();
+                            }
+                        });
+
+                        initialCompass -= 90;
+                        if (initialCompass < 0) {
+                            initialCompass += 360;
+                        }
+                    }
+
+                    // Up
+                    else if ((compassDiff >= -43) || (compassDiff <= 43)) {
+                        Log.d(TAG, "up entered");
+                        final Animation animation = createAnimation();
+                        final ImageButton btnUp = findViewById(R.id.imageUp);
+                        btnUp.startAnimation(animation);
+                        btnUp.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(final View view) {
+                                view.clearAnimation();
+                            }
+                        });
                     }
                 }
+                else
+                    movementIndicator.setText("Trolley is stationary");
 
-                // Right
-                else if (inRange(compassDiff, 47, 133) || inRange(compassDiff, -313, -227)){
-                    Log.d(TAG, "right entered");
-                    final Animation animation = createAnimation();
-                    final ImageButton btnRight = findViewById(R.id.imageRight);
-                    btnRight.startAnimation(animation);
-                    btnRight.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(final View view) {
-                            view.clearAnimation();
-                        }
-                    });
+                break;
 
-                    initialCompass += 90;
-                    if (initialCompass >= 360){
-                        initialCompass -= 360;
+            case Sensor.TYPE_LINEAR_ACCELERATION :
+
+                xValue = event.values[0];
+                yValue = event.values[1];
+
+
+
+                // This part to detect if walking or not
+                //walking and not turning              walking and turning
+                if(yValue > 0.3 && xValue < 0.3 || (yValue > 0.3 && xValue > 0.3)) {
+
+                    walking = true;
+                    numDeceleration = 0;
+
+                }
+                //standing and turn                                 standing
+                else if ((yValue < 0.3 && xValue > 0.3) || (yValue < 0.3 && xValue < 0.3)) {
+                    numDeceleration++;
+                }
+                else {
+                    numDeceleration++;
+                }
+
+                if (numDeceleration > 5) {
+
+                    walking = false;
+
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    if(walking == false) {
+                        numDeceleration = 0;
                     }
                 }
+                // Set the text in the app
+                //mTextStopCount.setText("Num of stops : " + stopCount);
+                //mTextSensorAccelerometer.setText(getResources().getString(R.string.label_accelerometer, xValue, yValue, zValue));
 
-                // Left
-                else if (inRange(compassDiff, -133, -47) || inRange(compassDiff, 227, 313)){
-                    Log.d(TAG, "left entered");
-                    final Animation animation = createAnimation();
-                    final ImageButton btnLeft = findViewById(R.id.imageLeft);
-                    btnLeft.startAnimation(animation);
-                    btnLeft.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(final View view) {
-                            view.clearAnimation();
-                        }
-                    });
-
-                    initialCompass -= 90;
-                    if (initialCompass < 0){
-                        initialCompass += 360;
-                    }
-                }
-
-                // Up
-                else if ((compassDiff >= -43) || (compassDiff <= 43)){
-                    Log.d(TAG, "up entered");
-                    final Animation animation = createAnimation();
-                    final ImageButton btnUp = findViewById(R.id.imageUp);
-                    btnUp.startAnimation(animation);
-                    btnUp.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(final View view) {
-                            view.clearAnimation();
-                        }
-                    });
-                }
+                //addEntry(event, charts.mChartAccel);
 
                 break;
 
@@ -196,7 +255,7 @@ public class Directions extends AppCompatActivity implements SensorEventListener
         // Change alpha from fully visible to invisible
         final Animation animation = new AlphaAnimation(1, 0);
         // duration is set to half a second
-        animation.setDuration(500);
+        animation.setDuration(167);
         // Do not alter animation rate
         animation.setInterpolator(new LinearInterpolator());
         // Repeat animation infinitely

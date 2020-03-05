@@ -106,7 +106,7 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/movementIndicator"
         android:layout_width="239dp"
         android:layout_height="31dp"
         android:text="Trolley is moving..."
@@ -114,9 +114,9 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.558"
+        app:layout_constraintHorizontal_bias="0.581"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout2"
-        app:layout_constraintVertical_bias="0.502" />
+        app:layout_constraintVertical_bias="0.663" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
