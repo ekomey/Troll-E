@@ -26,25 +26,6 @@ public class Sensors {
         mSensorMagnetometer = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD_UNCALIBRATED);
         mSensorOrientation = mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
 
-        /*   NOTE : There's TYPE_ACCELEROMETER and TYPE_LINEAR_ACCELERATION that can be used
-         *   TYPE_ACCELEROMETER will provide data with gravity calculations
-         *   TYPE_LINEAR_ACCELERATION will give raw data
-         *   Will need further discussion on which is more appropriate as the X Y Z values given might differ.
-         * */
-
-        // Print the string variable if no sensor is detected, e.g device doesn't have the sensor.
-//        String sensor_error = main.getResources().getString(R.string.error_no_sensor);
-//        if(mSensorAccelerometer == null) {
-//            main.getmTextSensorAccelerometer().setText(sensor_error);
-//        }
-//
-//        if(mSensorGyroscope == null) {
-//            main.getmTextSensorGyroscope().setText(sensor_error);
-//        }
-//
-//        if(mSensorOrientation == null) {
-//            main.getmTextSensorOrientation().setText(sensor_error);
-//        }
     }
 
     public void sensorStart() {

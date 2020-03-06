@@ -41,17 +41,11 @@ public class Start extends AppCompatActivity {
     public void startFlash()
     {
         flash=(Button)findViewById(R.id.start_btn);
-
         Animation mAnimation = new AlphaAnimation(1,0);
-
         mAnimation.setDuration(200);
-
         mAnimation.setInterpolator(new LinearInterpolator());
-
         mAnimation.setRepeatCount(5);
-
         mAnimation.setRepeatMode(Animation.REVERSE);
-
         flash.startAnimation(mAnimation);
     }
 

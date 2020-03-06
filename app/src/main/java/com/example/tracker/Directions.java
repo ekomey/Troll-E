@@ -84,12 +84,9 @@ public class Directions extends AppCompatActivity implements SensorEventListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.sensors = new Sensors(this);
-
         feedMultiple();
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_directions);
-
         movementIndicator = (TextView) findViewById(R.id.movementIndicator);
     }
 
@@ -120,7 +117,7 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                 compassDiff = compass - initialCompass;
                 System.out.println(compassDiff);
 
-                Log.d(TAG, "Compassdiff: "+ compassDiff);
+                Log.d(TAG, "CompassDiff: "+ compassDiff);
                 Log.d(TAG, "InitialCompass: "+ initialCompass);
                 Log.d(TAG, "Compass: "+ compass);
 
@@ -205,8 +202,6 @@ public class Directions extends AppCompatActivity implements SensorEventListener
 
                 xValue = event.values[0];
                 yValue = event.values[1];
-
-
 
                 // This part to detect if walking or not
                 //walking and not turning              walking and turning

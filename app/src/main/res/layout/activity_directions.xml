@@ -10,9 +10,6 @@
     tools:visibility="visible"
     android:background="@drawable/back">
 
-
-    Button buttonshape.xml
-
     <RelativeLayout
         android:id="@+id/relativeLayout2"
         android:layout_width="394dp"
