@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle"
-    android:background="@drawable/back">
+    android:background="@drawable/trollebackground">
 
     <corners
-        android:topLeftRadius="100dp"
-        android:topRightRadius="100dp"
-        android:bottomLeftRadius="63dp"
-        android:bottomRightRadius="63dp"
+        android:radius="50dp"
         />
     <gradient
         android:angle="225"
@@ -18,7 +15,7 @@
         />
     <size
         android:width="250dp"
-        android:height="100dp"
+        android:height="80dp"
         />
 
 </shape>

@@ -18,7 +18,6 @@ import android.widget.TextView;
 public class Start extends AppCompatActivity {
     private ImageButton helpButton;
     private TextView HelpAlert;
-    private Button BtnMove;
     private Button btnMove;
     Button flash;
 
@@ -26,54 +25,6 @@ public class Start extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-
-        helpButton = (ImageButton) findViewById(R.id.helpButton);
-        HelpAlert = (TextView) findViewById(R.id.HelpAlert);
-        helpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(Start.this);
-
-                builder.setCancelable(true);
-                builder.setTitle("How To Use");
-                builder.setMessage("Please make the phone straight");
-
-
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.cancel();
-                    }
-                });
-             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                 @Override
-                 public void onClick(DialogInterface dialogInterface, int i) {
-                   HelpAlert.setVisibility(View.VISIBLE);
-                 }
-             });
-             builder.show();
-            }
-        });
-
-
-        Handler h = new Handler();
-        h.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                startFlash();
-            }
-        },3000);
-
-
-
-//        Handler h = new Handler();
-//        h.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                startFlash();
-//            }
-//        },3000);
-
         btnMove = findViewById(R.id.start_btn);
 
         btnMove.setOnClickListener(new View.OnClickListener() {
@@ -87,17 +38,11 @@ public class Start extends AppCompatActivity {
     public void startFlash()
     {
         flash=(Button)findViewById(R.id.start_btn);
-
         Animation mAnimation = new AlphaAnimation(1,0);
-
         mAnimation.setDuration(200);
-
         mAnimation.setInterpolator(new LinearInterpolator());
-
         mAnimation.setRepeatCount(5);
-
         mAnimation.setRepeatMode(Animation.REVERSE);
-
         flash.startAnimation(mAnimation);
     }
 

@@ -2,16 +2,44 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/contraintLayout"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:visibility="visible"
     tools:context=".Directions"
     tools:visibility="visible"
-    android:background="@drawable/back">
+    android:orientation="vertical">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/trollelightbg" />
 
-    Button buttonshape.xml
+    // container for buttons by essam
+
+    <ImageButton
+        android:id="@+id/helpButton"
+        android:layout_width="94dp"
+        android:layout_height="94dp"
+        android:layout_marginStart="256dp"
+        android:layout_marginTop="24dp"
+        android:adjustViewBounds="true"
+        android:background="@android:color/transparent"
+        android:backgroundTint="#FFFFFF"
+        android:cropToPadding="true"
+        android:fitsSystemWindows="false"
+        android:padding="5dp"
+        android:scaleType="fitCenter"
+        android:scrollbarDefaultDelayBeforeFade="400"
+        android:visibility="visible"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_helpbutton"
+        tools:visibility="visible" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
@@ -37,14 +65,15 @@
             android:adjustViewBounds="false"
             android:background="@android:color/transparent"
             android:backgroundTint="#FFFFFF"
-            android:cropToPadding="false"
             android:orientation="horizontal"
             android:rotation="90"
             android:scrollbarDefaultDelayBeforeFade="400"
             android:tint="#00FCFAFA"
             android:visibility="visible"
             app:srcCompat="@drawable/ic_left"
-            tools:visibility="visible" />
+            tools:visibility="visible"
+            android:cropToPadding="true"
+            android:padding="5dp"/>
 
         <ImageButton
             android:id="@+id/imageRight"
@@ -109,17 +138,21 @@
 
     <TextView
         android:id="@+id/movementIndicator"
-        android:layout_width="239dp"
-        android:layout_height="31dp"
+        android:layout_width="244dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
         android:text="Trolley is moving..."
         android:textAlignment="center"
-        android:textSize="24sp"
+        android:textColor="@color/colorBackground"
+        android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.581"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2"
-        app:layout_constraintVertical_bias="0.663" />
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -129,24 +162,6 @@
         tools:ignore="MissingConstraints">
 
     </RelativeLayout>
-
-    <ImageButton
-        android:id="@+id/helpButton"
-        android:layout_width="66dp"
-        android:layout_height="101dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:adjustViewBounds="false"
-        android:background="@android:color/transparent"
-        android:backgroundTint="#FFFFFF"
-        android:cropToPadding="false"
-        android:scrollbarDefaultDelayBeforeFade="400"
-        android:tint="#00FCFAFA"
-        android:visibility="visible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_help"
-        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/HelpAlert"
@@ -158,5 +173,6 @@
         android:textSize="20sp"
         android:visibility="invisible"
         tools:ignore="MissingConstraints" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

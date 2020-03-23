@@ -14,11 +14,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import java.io.File;
 import android.Manifest;
@@ -64,39 +66,34 @@ import java.util.Date;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-
-
 @SuppressLint("NewApi")
 public class Directions extends AppCompatActivity implements SensorEventListener {
     private ImageButton helpButton;
     private TextView HelpAlert;
 
-
     // Sensors
     private Sensors sensors;
+    private Thread thread;
 
     // Database
     private float rMat[] = new float[9];
     private float[] orientation = new float[3];
 
-    private Thread thread;
-    private boolean plotData = true;
-    
+    // Compass related
     private static final String TAG = Directions.class.getSimpleName();
     private float compass;
     private float initialCompass = -1;
     private float compassDiff;
-
-    // Server related
-    private FirebaseDatabase mFirebaseDatabase;
-    private DatabaseReference mDatabase;
-
+    private boolean plotData;
     //Movement detection variable
     private float xValue = 0, yValue = 0;
     private boolean walking = false;
     private int numDeceleration = 0;
-
     private TextView movementIndicator;
+
+    // Server related
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,31 +103,31 @@ public class Directions extends AppCompatActivity implements SensorEventListener
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_directions);
+        final ImageView image = new ImageView(this);
+        image.setImageResource(R.drawable.phone1);
         helpButton = (ImageButton) findViewById(R.id.helpButton);
         HelpAlert = (TextView) findViewById(R.id.HelpAlert);
+
         helpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(Directions.this);
-
                 builder.setCancelable(true);
+                builder.setIcon(R.drawable.ic_help);
                 builder.setTitle("How To Use");
-                builder.setMessage("Please make the phone straight");
-
-
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                builder.setMessage("Please hold the phone as shown.");
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.cancel();
                     }
                 });
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        HelpAlert.setVisibility(View.VISIBLE);
-                    }
-                });
-                builder.show();
+                if (image.getParent() != null) {
+                    ((ViewGroup)image.getParent()).removeView(image);
+                }
+                builder.setView(image);
+                builder.create().show();
+
             }
         });
 
@@ -152,7 +149,6 @@ public class Directions extends AppCompatActivity implements SensorEventListener
         sensors.sensorStop();
     }
 
-   // @android.support.annotation.RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     public void onSensorChanged(SensorEvent event) {
         int sensorType = event.sensor.getType();
         switch (sensorType){
@@ -252,16 +248,12 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                     movementIndicator.setText("Trolley is stationary");
                     mDatabase.child("Walking").setValue(0);
                 }
-
-
                 break;
 
             case Sensor.TYPE_LINEAR_ACCELERATION :
 
                 xValue = event.values[0];
                 yValue = event.values[1];
-
-
 
                 // This part to detect if walking or not
                 //walking and not turning              walking and turning
@@ -280,7 +272,6 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                 }
 
                 if (numDeceleration > 5) {
-
                     walking = false;
 
                     try {
@@ -293,11 +284,6 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                         numDeceleration = 0;
                     }
                 }
-                // Set the text in the app
-                //mTextStopCount.setText("Num of stops : " + stopCount);
-                //mTextSensorAccelerometer.setText(getResources().getString(R.string.label_accelerometer, xValue, yValue, zValue));
-
-                //addEntry(event, charts.mChartAccel);
 
                 break;
 

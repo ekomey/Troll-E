@@ -4,8 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back"
-    tools:context=".Start">
+    tools:context=".Start"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/trollebackground" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -19,29 +25,6 @@
         android:layout_marginTop="116dp"
         android:layout_marginEnd="94dp"
         android:background="@color/colorBackground">
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="0dp"
-            android:layout_marginBottom="0dp"
-            android:fontFamily="@font/bungee"
-            android:lineSpacingExtra="8sp"
-            android:text="Troll-E"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-            android:textColor="#EADFCE"
-            android:textSize="50sp"
-            android:typeface="monospace"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="80dp"
-            tools:layout_editor_absoluteY="315dp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -100,40 +83,4 @@
         android:tint="#00FCFAFA"
         android:visibility="visible" />
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
-
-    </RelativeLayout>
-
-    <ImageButton
-        android:id="@+id/helpButton"
-        android:layout_width="66dp"
-        android:layout_height="101dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:adjustViewBounds="false"
-        android:background="@android:color/transparent"
-        android:backgroundTint="#FFFFFF"
-        android:cropToPadding="false"
-        android:scrollbarDefaultDelayBeforeFade="400"
-        android:tint="#00FCFAFA"
-        android:visibility="visible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_help"
-        tools:visibility="visible" />
-
-    <TextView
-        android:id="@+id/HelpAlert"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/helpButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:textSize="20sp"
-        android:visibility="invisible"
-        />
 </RelativeLayout>
