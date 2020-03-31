@@ -319,24 +319,13 @@ public class Directions extends AppCompatActivity implements SensorEventListener
     //checks if phone has wifi or mobile data connection
     private boolean haveNetwork()
     {
-        boolean have_WIFI = false;
-        boolean have_MobileData = false;
+        boolean isConnected;
 
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
-        NetworkInfo[] networkInfo = connectivityManager.getAllNetworkInfo();
+        NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
 
-        for(NetworkInfo info:networkInfo)
-        {
-            if(info.getTypeName().equalsIgnoreCase("WIFI"))
-                if(info.isConnected())
-                    have_WIFI = true;
-
-            if(info.getTypeName().equalsIgnoreCase("MOBILE"))
-                if(info.isConnected())
-                    have_MobileData = true;
-        }
-
-        return have_MobileData || have_WIFI;
+        isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+        return isConnected;
     }
 
     private void feedMultiple() {
