@@ -18,13 +18,12 @@
         android:src="@drawable/trollelightbg" />
 
     // container for buttons by essam
-
     <ImageButton
         android:id="@+id/helpButton"
         android:layout_width="94dp"
         android:layout_height="94dp"
         android:layout_marginStart="256dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="48dp"
         android:adjustViewBounds="true"
         android:background="@android:color/transparent"
         android:backgroundTint="#FFFFFF"
@@ -39,7 +38,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_helpbutton"
-        tools:visibility="visible" />
+        tools:visibility="visible"
+        android:layout_marginLeft="256dp" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
@@ -73,7 +73,9 @@
             app:srcCompat="@drawable/ic_left"
             tools:visibility="visible"
             android:cropToPadding="true"
-            android:padding="5dp"/>
+            android:padding="5dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="87dp" />
 
         <ImageButton
             android:id="@+id/imageRight"
@@ -92,7 +94,9 @@
             android:tint="#00FCFAFA"
             android:visibility="visible"
             app:srcCompat="@drawable/ic_right"
-            tools:visibility="visible" />
+            tools:visibility="visible"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="78dp" />
 
         <ImageButton
             android:id="@+id/imageUp"
@@ -110,7 +114,9 @@
             android:tint="#00FCFAFA"
             android:visibility="visible"
             app:srcCompat="@drawable/ic_up"
-            tools:visibility="visible" />
+            tools:visibility="visible"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="108dp" />
 
         <ImageButton
             android:id="@+id/imageDown"
@@ -132,7 +138,11 @@
             android:tint="#00FCFAFA"
             android:visibility="visible"
             app:srcCompat="@drawable/ic_down"
-            tools:visibility="visible" />
+            tools:visibility="visible"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="145dp"
+            android:layout_marginRight="128dp" />
 
     </RelativeLayout>
 
@@ -152,7 +162,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2"
+        android:gravity="center_horizontal" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -173,6 +184,5 @@
         android:textSize="20sp"
         android:visibility="invisible"
         tools:ignore="MissingConstraints" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

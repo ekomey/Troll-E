@@ -24,7 +24,11 @@
         android:layout_marginStart="82dp"
         android:layout_marginTop="116dp"
         android:layout_marginEnd="94dp"
-        android:background="@color/colorBackground">
+        android:background="@color/colorBackground"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="82dp"
+        android:layout_marginRight="94dp">
     </RelativeLayout>
 
     <RelativeLayout
@@ -34,7 +38,9 @@
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
         android:layout_marginEnd="94dp"
-        android:layout_marginBottom="5dp">
+        android:layout_marginBottom="5dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="94dp">
 
     </RelativeLayout>
 
@@ -61,7 +67,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="80dp"
-        tools:layout_editor_absoluteY="315dp" />
+        tools:layout_editor_absoluteY="315dp"
+        android:gravity="center_horizontal" />
 
     <ImageButton
         android:id="@+id/imageButton"
@@ -81,6 +88,10 @@
         android:cropToPadding="false"
         android:scrollbarDefaultDelayBeforeFade="400"
         android:tint="#00FCFAFA"
-        android:visibility="visible" />
+        android:visibility="visible"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="152dp"
+        android:layout_marginRight="138dp" />
 
 </RelativeLayout>
