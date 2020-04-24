@@ -63,8 +63,6 @@ import java.util.Locale;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
-
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
