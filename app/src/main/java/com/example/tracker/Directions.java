@@ -191,7 +191,7 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                                     view.clearAnimation();
                                 }
                             });
-                            animation.setRepeatCount(5);
+                            animation.setRepeatCount(1);
 
                             initialCompass += 180;
                             if (initialCompass >= 360) {
@@ -211,7 +211,7 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                                     view.clearAnimation();
                                 }
                             });
-                            animation.setRepeatCount(5);
+                            animation.setRepeatCount(1);
 
                             initialCompass += 90;
                             if (initialCompass >= 360) {
@@ -231,7 +231,7 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                                     view.clearAnimation();
                                 }
                             });
-                            animation.setRepeatCount(5);
+                            animation.setRepeatCount(1);
 
                             initialCompass -= 90;
                             if (initialCompass < 0) {
@@ -251,7 +251,7 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                                     view.clearAnimation();
                                 }
                             });
-                            animation.setRepeatCount(5);
+                            animation.setRepeatCount(1);
                         }
                     } else {
                         movementIndicator.setText("Trolley is stationary");
