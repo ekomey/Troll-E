@@ -211,7 +211,7 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                                     view.clearAnimation();
                                 }
                             });
-                            animation.setRepeatCount(1);
+                            animation.setRepeatCount(3);
 
                             initialCompass += 90;
                             if (initialCompass >= 360) {
@@ -231,7 +231,7 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                                     view.clearAnimation();
                                 }
                             });
-                            animation.setRepeatCount(1);
+                            animation.setRepeatCount(3);
 
                             initialCompass -= 90;
                             if (initialCompass < 0) {
