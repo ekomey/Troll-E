@@ -309,7 +309,7 @@ public class Directions extends AppCompatActivity implements SensorEventListener
         // Do not alter animation rate
         animation.setInterpolator(new LinearInterpolator());
         // Repeat animation infinitely
-        animation.setRepeatCount(3);
+        animation.setRepeatCount(1);
         // Reverse animation at the end so the button will fade back in
         animation.setRepeatMode(Animation.REVERSE);
         return animation;
