@@ -3,16 +3,12 @@ package com.example.tracker;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.DialogInterface;
-import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.icu.text.Collator;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,53 +16,15 @@ import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import java.io.File;
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.os.Bundle;
 
-import android.content.Context;
-import android.hardware.Sensor;
 import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
-
-import android.os.Environment;
-import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Button;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
-
-//import com.google.firebase.database.DatabaseReference;
-//import com.google.firebase.database.FirebaseDatabase;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
-import java.util.Locale;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-@SuppressLint("NewApi")
 public class Directions extends AppCompatActivity implements SensorEventListener {
     private ImageButton helpButton;
     private TextView HelpAlert;
@@ -84,8 +42,7 @@ public class Directions extends AppCompatActivity implements SensorEventListener
     private float compass;
     private float initialCompass = -1;
     private float compassDiff;
-    private boolean plotData;
-    //Movement detection variable
+    // Movement detection variable
     private float xValue = 0, yValue = 0;
     private boolean walking = false;
     private int numDeceleration = 0;
@@ -108,6 +65,7 @@ public class Directions extends AppCompatActivity implements SensorEventListener
         helpButton = (ImageButton) findViewById(R.id.helpButton);
         HelpAlert = (TextView) findViewById(R.id.HelpAlert);
 
+        // Help button implementation
         helpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,7 +85,6 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                 }
                 builder.setView(image);
                 builder.create().show();
-
             }
         });
 
@@ -160,20 +117,19 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                 case Sensor.TYPE_ROTATION_VECTOR:
 
                     SensorManager.getRotationMatrixFromVector(rMat, event.values);
+                    // Extract the rotation vector and convert to a compass bearing
                     compass = Math.round((int) (Math.toDegrees(SensorManager.getOrientation(rMat, orientation)[0]) + 360) % 360);
 
+                    // Write to database
                     mDatabase.child("Compass").setValue(compass);
 
+                    // This part run once to initialize the value at the start of the application.
                     if (initialCompass < 0) {
                         initialCompass = compass;
                     }
 
                     compassDiff = compass - initialCompass;
                     System.out.println(compassDiff);
-
-                    Log.d(TAG, "Compassdiff: " + compassDiff);
-                    Log.d(TAG, "InitialCompass: " + initialCompass);
-                    Log.d(TAG, "Compass: " + compass);
 
                     // Down
                     if (walking == true) {
@@ -259,20 +215,21 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                     yValue = event.values[1];
 
                     // This part to detect if walking or not
-                    //walking and not turning              walking and turning
+                    // Walking and not turning              walking and turning
                     if (yValue > 0.3 && xValue < 0.3 || (yValue > 0.3 && xValue > 0.3)) {
 
                         walking = true;
                         numDeceleration = 0;
 
                     }
-                    //standing and turn                                 standing
+                    // Standing and turn                                 standing
                     else if ((yValue < 0.3 && xValue > 0.3) || (yValue < 0.3 && xValue < 0.3)) {
                         numDeceleration++;
                     } else {
                         numDeceleration++;
                     }
 
+                    // Count the number of decelerations
                     if (numDeceleration > 5) {
                         walking = false;
 
@@ -298,7 +255,7 @@ public class Directions extends AppCompatActivity implements SensorEventListener
     private Animation createAnimation() {
         // Change alpha from fully visible to invisible
         final Animation animation = new AlphaAnimation(1, 0);
-        // duration is set to half a second
+        // Duration is set to half a second
         animation.setDuration(167);
         // Do not alter animation rate
         animation.setInterpolator(new LinearInterpolator());
@@ -309,12 +266,12 @@ public class Directions extends AppCompatActivity implements SensorEventListener
         return animation;
     }
 
-    // checks if compass difference is in range of const1 and const2
+    // Checks if compass difference is in range of const1 and const2
     private Boolean inRange(float x, float const1, float const2) {
         return x >= const1 && x <= const2;
     }
 
-    //checks if phone has wifi or mobile data connection
+    // Checks if phone has wifi or mobile data connection
     private boolean haveNetwork()
     {
         boolean isConnected;
@@ -337,7 +294,6 @@ public class Directions extends AppCompatActivity implements SensorEventListener
             @Override
             public void run() {
                 while (true){
-                    plotData = true;
                     try {
                         Thread.sleep(10);
                     } catch (InterruptedException e) {
@@ -375,10 +331,4 @@ public class Directions extends AppCompatActivity implements SensorEventListener
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
     }
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-    }
-
-
 }

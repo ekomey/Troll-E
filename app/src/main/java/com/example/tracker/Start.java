@@ -21,6 +21,8 @@ public class Start extends AppCompatActivity {
             }
         });
     }
+
+    // Transtition to next screen
     private void transitionToDirections() {
         Intent intent = new Intent(Start.this, Directions.class);
         startActivity(intent);
