@@ -6,7 +6,6 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.example.tracker"
-        minSdkVersion 22
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
