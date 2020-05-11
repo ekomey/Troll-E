@@ -1,3 +1,5 @@
+// Code written by Group 9A
+
 package com.example.tracker;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,7 +24,7 @@ public class Start extends AppCompatActivity {
         });
     }
 
-    // Transtition to next screen
+    // Transition to next screen
     private void transitionToDirections() {
         Intent intent = new Intent(Start.this, Directions.class);
         startActivity(intent);

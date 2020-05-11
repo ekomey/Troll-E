@@ -1,3 +1,5 @@
+// Code written by Group 9A
+
 package com.example.tracker;
 
 import androidx.appcompat.app.AlertDialog;
@@ -10,7 +12,6 @@ import android.hardware.SensorManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
@@ -55,8 +56,6 @@ public class Directions extends AppCompatActivity implements SensorEventListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.sensors = new Sensors(this);
-
-        feedMultiple();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_directions);
@@ -146,6 +145,7 @@ public class Directions extends AppCompatActivity implements SensorEventListener
                                 }
                             });
 
+                            // Update user's current direction
                             initialCompass += 180;
                             if (initialCompass >= 360) {
                                 initialCompass -= 360;
@@ -154,7 +154,6 @@ public class Directions extends AppCompatActivity implements SensorEventListener
 
                         // Right
                         else if (inRange(compassDiff, 47, 133) || inRange(compassDiff, -313, -227)) {
-                            Log.d(TAG, "right entered");
                             final Animation animation = createAnimation();
                             final ImageButton btnRight = findViewById(R.id.imageRight);
                             btnRight.startAnimation(animation);
@@ -173,7 +172,6 @@ public class Directions extends AppCompatActivity implements SensorEventListener
 
                         // Left
                         else if (inRange(compassDiff, -133, -47) || inRange(compassDiff, 227, 313)) {
-                            Log.d(TAG, "left entered");
                             final Animation animation = createAnimation();
                             final ImageButton btnLeft = findViewById(R.id.imageLeft);
                             btnLeft.startAnimation(animation);
@@ -192,7 +190,6 @@ public class Directions extends AppCompatActivity implements SensorEventListener
 
                         // Up
                         else if ((compassDiff >= -43) || (compassDiff <= 43)) {
-                            Log.d(TAG, "up entered");
                             final Animation animation = createAnimation();
                             final ImageButton btnUp = findViewById(R.id.imageUp);
                             btnUp.startAnimation(animation);
@@ -281,29 +278,6 @@ public class Directions extends AppCompatActivity implements SensorEventListener
 
         isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
         return isConnected;
-    }
-
-    private void feedMultiple() {
-
-        if (thread != null){
-            thread.interrupt();
-        }
-
-        thread = new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                while (true){
-                    try {
-                        Thread.sleep(10);
-                    } catch (InterruptedException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-        thread.start();
     }
 
     protected void onPause() {
