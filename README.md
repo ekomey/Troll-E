@@ -4,7 +4,7 @@ namely from the accelerometer and rotation sensors from a mobile phone, to detec
 
 ## How to Run
 - Install Android Studio
-- Import folder into Android Studio 
-- Create an emulated Android device with an API of 22 and above
+- Import the project into Android Studio 
+- Create an emulated Android device with an API of 24 and above
 - Run on the emulator
-- If you have a physical android phone, transfer the apk file to your phone to install it directly
+- If you have a physical android phone, transfer the "app-debug.apk" file to your phone and locate it in your phone to install it directly
